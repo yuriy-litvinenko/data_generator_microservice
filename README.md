@@ -31,6 +31,20 @@
 3. **Мониторинг поступивших в Kafka сообщений с заданным топиком**  
    .\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic data-temperature --from-beginning
 4. **Отправка сообщения в Kafka с использованием данного сервиса**  
-![postman1.png](postman1.png)
+   POST http://localhost:8081/api/v1/data/send  
+   {
+   "sensorId": 5,
+   "timestamp": "2023-11-20T20:00:00",
+   "measurement": 35.5,
+   "measurementType": "TEMPERATURE"
+   }
 5. **Запуск сервиса автоматически генерирующего сообщения с последующей отправкой в Kafka**  
-![postman2.png](postman2.png)
+   POST http://localhost:8081/api/v1/data/test/send  
+   {
+   "delayInSeconds": 3,
+   "measurementTypes": [
+   "POWER",
+   "VOLTAGE",
+   "TEMPERATURE"
+   ]
+   }
